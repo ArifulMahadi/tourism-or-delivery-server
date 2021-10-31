@@ -19,12 +19,19 @@ async function run () {
         await client.connect()
         const database = client.db('online_Shop')
         const ticketCollection = database.collection('tickets')
+        const orderCollection = database.collection('orders')
 
         //get tickets api 
         app.get('/tickets', async(req, res) =>{
             const cursor = ticketCollection.find({});
             const tickets = await cursor.toArray();
             res.send(tickets)
+        })
+        // order api 
+        app.post('/order',async(req, res) => {
+            const order = req.body;
+            const result = await orderCollection.insertOne(order)
+            res.json(result)
         })
     }
     finally{
