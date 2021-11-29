@@ -42,7 +42,7 @@ run().catch(console.dir)
 
 
 app.get('/', (req, res) => {
-    res.send('hello traveller!')
+    res.send('hello traveller! hello ')
 })
 app.listen(port, () => {
     console.log('server runnig from',port)
